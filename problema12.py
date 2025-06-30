@@ -1,17 +1,24 @@
-#Diccionario
-mime_tipo = {".gif": "image/gif",".jpg":"image/jpeg",
-        ".jpeg":"image/jpeg",".png":"image/png",
-                ".pdf":"application/pdf",".txt":"text/plain",
-                        ".zip":"application/zip"}
+MIMES = {
+    'gif':'image/gif',
+    'jpg':'image/jpeg',
+    'jpeg':'image/jpeg',
+    'png':'image/png',
+    'pdf':'application/pdf',
+    'txt':'text/plain',
+    'zip':'application/zip'
+    }
 
-nombre_archivo = input("Ingrese nombre de archivo: ")
-nombre_archivo = nombre_archivo.lower()
-punto_extension = nombre_archivo.rfind('.')
+# obtenemos dato
+response = input('ext name: ')
+response = response.lower().strip()
 
-if punto_extension == -1 or punto_extension == len(nombre_archivo) -1:
- tipo = "application/octet-stream"
+# separamos archivo de extension
+_, ext = response.split('.')
+
+
+# Obtendo valor MIME correspondiente de diccionario
+if ext.lower() in MIMES.keys():
+    x = MIMES.get(ext)
+    print(x)
 else:
-    extension = nombre_archivo[punto_extension:]  
-    tipo = mime_tipo.get(extension, "application/octet-stream")
-
-print("Tipo MIME:", tipo)
+    print('application/octet-stream')
